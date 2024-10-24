@@ -63,7 +63,7 @@ class UNIScore:
     
     return patch_emb
 
-  def compute_similarity_between_embeddings(patch_a_emb, patch_b_emb):
+  def compute_similarity_between_embeddings(self, patch_a_emb, patch_b_emb):
     cosine_similarity = np.dot(patch_a_emb, patch_b_emb) / (np.linalg.norm(patch_a_emb) * np.linalg.norm(patch_b_emb))
     return cosine_similarity
 
