@@ -65,7 +65,10 @@ class UNIScore:
       patch_a_emb = self.model(patch_a_t) 
       patch_b_emb = self.model(patch_b_t)
 
+    # convert feature embeddings to 1D NumPy arrays (in cosine similarity, each embedding needed to be 1D vec )
+    patch_a_emb = patch_a_emb.cpu().numpy().flatten()
+    patch_b_emb = patch_b_emb.cpu().numpy().flatten()
+
     # Return cosine similarity
     cosine_similarity = np.dot(patch_a_emb, patch_b_emb) / (np.linalg.norm(patch_a_emb) * np.linalg.norm(patch_b_emb))
     return cosine_similarity
-       
