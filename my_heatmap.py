@@ -7,7 +7,7 @@ INPUTS:
   patch_center_x, patch_center_y: center position in pixels.
   patch_size: number of pixels accross.
   plot_patch_over_image: for debug purposes."""
-def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, plot_patch_over_image=False):
+def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, plot_patch_over_image=False, plot_patch_over_image_color='red'):
   
   # Four edges of the patch
   half_patch_size = patch_size // 2
@@ -32,7 +32,7 @@ def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, 
     rectangle = [top_left, bottom_right]
 
     # Draw the rectangle
-    draw.rectangle(rectangle, outline="red", width=3)
+    draw.rectangle(rectangle, outline=plot_patch_over_image_color, width=3)
 
     # Plot the image with the rectangle
     plt.imshow(image_duplicate)
