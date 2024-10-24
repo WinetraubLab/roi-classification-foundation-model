@@ -40,35 +40,36 @@ class UNIScore:
     # Set the model to evaluation mode
     self.model.eval()
 
-  """ This function computes the score between two patches. 
-  Both patches should be a PIL.Image class """
-  def compute_similarity_between_patches(self, patch_a, patch_b, patch_size=256):
+  """ This function computes embedding of a patch (PIL.Image) """
+  def compute_patch_embedding(self, patch, patch_size=256):
 
     # Check patch sizes
-    def check_patch_size(p):
-      width, height = p.size
-      if width != patch_size or height != patch_size:
-        raise ValueError(f"patch_a and patch_b should be of size {patch_size}")
-    check_patch_size(patch_a)
-    check_patch_size(patch_b)
+    width, height = patch.size
+    if width != patch_size or height != patch_size:
+      raise ValueError(f"patch_a and patch_b should be of size {patch_size}")
 
     # Make sure PIL.image is RGB
-    patch_a = patch_a.convert("RGB")
-    patch_b = patch_b.convert("RGB")
+    patch = patch.convert("RGB")
 
-    # Transform image patches
-    patch_a_t = self.transform(patch_a).unsqueeze(dim=0) # transform test image patch
-    patch_b_t = self.transform(patch_b).unsqueeze(dim=0) # transform test image patch
+    # Transform image patch
+    patch_t = self.transform(patch).unsqueeze(dim=0) 
 
     # Compute feature embeddings
     with torch.inference_mode():
-      patch_a_emb = self.model(patch_a_t) 
-      patch_b_emb = self.model(patch_b_t)
+      patch_emb = self.model(patch_t) 
 
     # convert feature embeddings to 1D NumPy arrays (in cosine similarity, each embedding needed to be 1D vec )
-    patch_a_emb = patch_a_emb.cpu().numpy().flatten()
-    patch_b_emb = patch_b_emb.cpu().numpy().flatten()
+    patch_emb = patch_emb.cpu().numpy().flatten()
+    
+    return patch_emb
 
-    # Return cosine similarity
+  def compute_similarity_between_embeddings(patch_a_emb, patch_b_emb):
     cosine_similarity = np.dot(patch_a_emb, patch_b_emb) / (np.linalg.norm(patch_a_emb) * np.linalg.norm(patch_b_emb))
     return cosine_similarity
+
+  """ This function computes the score between two patches. 
+  Both patches should be a PIL.Image class """
+  def compute_similarity_between_patches(self, patch_a, patch_b, patch_size=256):
+    patch_a_emb = self.compute_patch_embedding(patch_a, patch_size)
+    patch_b_emb = self.compute_patch_embedding(patch_b, patch_size)
+    return self.compute_similarity_between_embeddings(patch_a_emb, patch_b_emb)
