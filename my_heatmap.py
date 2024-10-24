@@ -17,7 +17,7 @@ def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, 
   bottom_right = (patch_center_x + half_patch_size, patch_center_y + half_patch_size)
 
   # Check if the patch corners are outside the test image boundaries
-  width, height = test_image.size # get the width and height of the test image
+  width, height = image.size # get the width and height of the test image
   if top_left[0] < 0 or top_left[1] < 0 or top_right[0] > width or top_right[1] > height or bottom_left[0] < 0 or bottom_left[1] > height or bottom_right[0] > width or bottom_right[1] > height:
     raise ValueError(f"Patch centered at ({patch_center_x},{patch_center_y}) is outside the image")
 
