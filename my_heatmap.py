@@ -25,7 +25,8 @@ def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, 
 
   if plot_patch_over_image: 
     # Create a draw object
-    draw = ImageDraw.Draw(image)
+    image_duplicate = image.copy()
+    draw = ImageDraw.Draw(image_duplicate)
 
     # Define the rectangle based on top-left and bottom-right coordinates
     rectangle = [top_left, bottom_right]
@@ -34,7 +35,7 @@ def get_patch_from_image(image, patch_center_x, patch_center_y, patch_size=256, 
     draw.rectangle(rectangle, outline="red", width=3)
 
     # Plot the image with the rectangle
-    plt.imshow(image)
+    plt.imshow(image_duplicate)
     plt.axis('off')  # Hide axes for better visibility
     plt.show()
 
