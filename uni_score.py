@@ -42,7 +42,7 @@ class UNIScore:
 
   """ This function computes the score between two patches. 
   Both patches should be a PIL.Image class """
-  def compute_similarity_between_patches(self, patch_a, patch_b, center, patch_size=256):
+  def compute_similarity_between_patches(self, patch_a, patch_b, patch_size=256):
 
     # Check patch sizes
     def check_patch_size(p):
