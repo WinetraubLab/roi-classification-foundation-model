@@ -149,3 +149,4 @@ class Resnet50Score:
         plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB))
         plt.axis('off')
         plt.savefig(overlay_heatmap_path, format='png', dpi=300, bbox_inches='tight')
+        plt.show()
