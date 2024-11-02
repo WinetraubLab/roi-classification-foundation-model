@@ -1,1 +1,6 @@
 myenv/
+
+# Ignore large library files
+*.dylib
+*.so
+*.dll
