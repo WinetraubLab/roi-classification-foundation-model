@@ -1,3 +1,4 @@
+# Ignore virtual environment
 myenv/
 
 # Ignore large library files
