@@ -21,14 +21,12 @@ class Resnet50Score:
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229,0.224, 0.225]),
         ])
-        
-        
+            
     def extract_embeddings(self, image):
         '''
         Extracts the embedding from the image using the ResNet50 model.
         '''
         # load and preprocess the image
-        #img = Image.open(image_path).convert('RGB') # already opene in extract_patches_and_features
         img_tensor = self.preprocess(image).unsqueeze(0)
         
         # extract embeddings
@@ -64,7 +62,7 @@ class Resnet50Score:
                 patch.save(patch_path) # save patches in the folder 
                 
                 # extract features
-                embeddings = self.extract_embeddings(image)
+                embeddings = self.extract_embeddings(patch)
                 np.save(os.path.join(embedding_folder, f"patch_{i}_{j}.npy"), embeddings) # saving patch embeddings
                 
 
@@ -151,8 +149,3 @@ class Resnet50Score:
         plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB))
         plt.axis('off')
         plt.savefig(overlay_heatmap_path, format='png', dpi=300, bbox_inches='tight')
-        plt.show()
-                
-            
-        
-
