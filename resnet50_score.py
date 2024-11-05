@@ -116,14 +116,14 @@ class Resnet50Score:
         heatmap = np.array(similarity_heatmap_grid)
         colors = [(0.0, "darkgreen"),
                   (0.65, "green"),
-                  (0.73, "red"),
+                  (0.72, "red"),
                   (1.0, "darkred")]
         
         cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors)
         
         # showing and saving similarity heatmap
         plt.figure(figsize=(10,8))
-        sns.heatmap(heatmap, cmap=cmap, annot=True, fmt=".2f", cbar=True, vmin=0.65, vmax=0.73)
+        sns.heatmap(heatmap, cmap=cmap, annot=True, fmt=".2f", cbar=True, vmin=0.65, vmax=0.72)
         plt.title('RCM Cosine Similarity Heatmap with ResNet50')
         plt.savefig(heatmap_file_path, format='png', dpi=300, bbox_inches='tight')
         plt.show()
@@ -131,7 +131,7 @@ class Resnet50Score:
         
         # for the purpose of overlaying heatmap onto the test image
         plt.figure(figsize=(10,8))
-        sns.heatmap(heatmap, cmap=cmap, annot=True, fmt=".2f", cbar=True, vmin=0.65, vmax=0.73)
+        sns.heatmap(heatmap, cmap=cmap, annot=True, fmt=".2f", cbar=True, vmin=0.65, vmax=0.72)
         plt.xticks([])  # Remove x-axis labels
         plt.yticks([])  # Remove y-axis labels
         plt.savefig(overlay_heatmap_path, format='png', dpi=300, bbox_inches='tight')
