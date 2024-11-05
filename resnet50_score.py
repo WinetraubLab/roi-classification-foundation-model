@@ -114,8 +114,10 @@ class Resnet50Score:
         
         similarity_heatmap_grid = self.calculate_cosine_sim(ref_embedding_path, embedding_folder)
         heatmap = np.array(similarity_heatmap_grid)
-        colors = [(0.65, "green"),
-                  (0.72, "red")]
+        colors = [(0.0, "darkgreen"),
+                  (0.65, "green"),
+                  (0.72, "red"),
+                  (1.0, "darkred")]
         
         cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors)
         
