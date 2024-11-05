@@ -125,6 +125,7 @@ class Resnet50Score:
         plt.title('RCM Cosine Similarity Heatmap with ResNet50')
         plt.savefig(heatmap_file_path, format='png', dpi=300, bbox_inches='tight')
         plt.show()
+        print("Changed the heatmap!!")
         
         # for the purpose of overlaying heatmap onto the test image
         plt.figure(figsize=(10,8))
