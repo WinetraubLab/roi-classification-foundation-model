@@ -116,7 +116,7 @@ class Resnet50Score:
         heatmap = np.array(similarity_heatmap_grid)
         colors = [(0.0, "darkgreen"),
                   (0.65, "green"),
-                  (0.72, "red"),
+                  (0.73, "red"),
                   (1.0, "darkred")]
         
         cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors)
