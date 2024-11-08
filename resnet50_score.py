@@ -125,7 +125,7 @@ class Resnet50Score:
         # showing and saving similarity heatmap
         plt.figure(figsize=(10,8))
         sns.heatmap(heatmap, cmap="RdYlGn_r", annot=True, fmt=".2f", cbar=True)
-        plt.title('RCM Cosine Similarity Heatmap with ResNet50')
+        plt.title('Virtual H&E Cosine Similarity Heatmap with ResNet50')
         plt.savefig(heatmap_file_path, format='png', dpi=300, bbox_inches='tight')
         plt.show()
         print("Changed the heatmap!!")
@@ -154,7 +154,7 @@ class Resnet50Score:
         alpha = 0.5 # Adjust transparency level (0: fully transparent, 1: fully opaque)
         overlay = cv2.addWeighted(original_image, 1 - alpha, heatmap, alpha, 0)
         
-        plt.title('Overlayed RCM Heatmap From ResNet50')
+        plt.title('Overlayed Virtual H&E Heatmap From ResNet50')
         plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB))
         plt.axis('off')
         plt.savefig(overlay_heatmap_path, format='png', dpi=300, bbox_inches='tight')
