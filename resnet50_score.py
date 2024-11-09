@@ -3,11 +3,10 @@ import torch.nn as nn
 from torchvision import models, transforms
 from PIL import Image
 import numpy as np
-import os
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import seaborn as sns 
-import cv2
+
 
 '''Use this class to compute score between two patches'''
 class Resnet50Score:
